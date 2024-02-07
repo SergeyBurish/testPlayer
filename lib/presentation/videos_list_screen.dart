@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:test_player/internal/dependencies/state_module.dart';
 import 'package:test_player/internal/routing/app_router.dart';
 import 'package:test_player/l10n/l10n.dart';
+import 'package:test_player/presentation/components/videos_list.dart';
 
 final appState = StateModule.appState();
 
@@ -17,9 +18,9 @@ class VideosListScreen extends StatefulWidget {
 
 class _VideosListScreenState extends State<VideosListScreen> {
 
-
-  void go2Details () => AutoRouter.of(context).push(const VideoDetailsRoute(),);
-  void getVideos () {
+  @override
+  void initState() {
+    super.initState();
     appState.getVideos();
   }
 
@@ -30,9 +31,9 @@ class _VideosListScreenState extends State<VideosListScreen> {
       body: Center(child: Column(
         children: [
           Text(L10n.of(context).allVideos),
-          ElevatedButton(onPressed: go2Details, child: const Text('go2Details')),
-          ElevatedButton(onPressed: getVideos, child: const Text('getVideos'))
+          const Expanded(child: VideosList()),
         ],
-      )),);
+      )),
+    );
   }
 }

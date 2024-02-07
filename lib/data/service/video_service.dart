@@ -1,3 +1,4 @@
+import 'package:test_player/businessLogic/model/models.dart';
 import 'package:test_player/data/dataProviders/data_providers.dart';
 
 class VideoService {
@@ -6,8 +7,7 @@ class VideoService {
 
   VideoService(this._videosDataProvider);
   
-  Future<void> getVideos () async {
-    final response = await _videosDataProvider.getVideos(page: 1);
-    print('getVideos response $response');
+  Future<VideosResponse> getVideos () async {
+    return  await _videosDataProvider.getVideos(page: 1);
   }
 }

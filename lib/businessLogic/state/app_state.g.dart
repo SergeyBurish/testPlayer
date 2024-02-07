@@ -25,26 +25,74 @@ mixin _$AppState on _AppState, Store {
     });
   }
 
+  late final _$currentVideIdAtom =
+      Atom(name: '_AppState.currentVideId', context: context);
+
+  @override
+  int get currentVideId {
+    _$currentVideIdAtom.reportRead();
+    return super.currentVideId;
+  }
+
+  @override
+  set currentVideId(int value) {
+    _$currentVideIdAtom.reportWrite(value, super.currentVideId, () {
+      super.currentVideId = value;
+    });
+  }
+
+  late final _$listVideoAtom =
+      Atom(name: '_AppState.listVideo', context: context);
+
+  @override
+  List<Video> get listVideo {
+    _$listVideoAtom.reportRead();
+    return super.listVideo;
+  }
+
+  @override
+  set listVideo(List<Video> value) {
+    _$listVideoAtom.reportWrite(value, super.listVideo, () {
+      super.listVideo = value;
+    });
+  }
+
+  late final _$getVideosAsyncAction =
+      AsyncAction('_AppState.getVideos', context: context);
+
+  @override
+  Future<void> getVideos() {
+    return _$getVideosAsyncAction.run(() => super.getVideos());
+  }
+
+  late final _$getVideosNextPageAsyncAction =
+      AsyncAction('_AppState.getVideosNextPage', context: context);
+
+  @override
+  Future<void> getVideosNextPage() {
+    return _$getVideosNextPageAsyncAction.run(() => super.getVideosNextPage());
+  }
+
   late final _$_AppStateActionController =
       ActionController(name: '_AppState', context: context);
 
   @override
-  void getVideos() {
-    final _$actionInfo =
-        _$_AppStateActionController.startAction(name: '_AppState.getVideos');
+  void setCurrentVideoId(int id) {
+    final _$actionInfo = _$_AppStateActionController.startAction(
+        name: '_AppState.setCurrentVideoId');
     try {
-      return super.getVideos();
+      return super.setCurrentVideoId(id);
     } finally {
       _$_AppStateActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void getVideosNextPage() {
+  Video getCurrentVideo() {
     final _$actionInfo = _$_AppStateActionController.startAction(
-        name: '_AppState.getVideosNextPage');
+        name: '_AppState.getCurrentVideo');
     try {
-      return super.getVideosNextPage();
+      return super.getCurrentVideo();
     } finally {
       _$_AppStateActionController.endAction(_$actionInfo);
     }
@@ -53,7 +101,9 @@ mixin _$AppState on _AppState, Store {
   @override
   String toString() {
     return '''
-currentVideosPage: ${currentVideosPage}
+currentVideosPage: ${currentVideosPage},
+currentVideId: ${currentVideId},
+listVideo: ${listVideo}
     ''';
   }
 }
