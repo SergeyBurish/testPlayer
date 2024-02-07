@@ -1,9 +1,11 @@
 // import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:test_player/internal/dependencies/service_module.dart';
+import 'package:test_player/internal/dependencies/state_module.dart';
 import 'package:test_player/internal/routing/app_router.dart';
 import 'package:test_player/l10n/l10n.dart';
+
+final appState = StateModule.appState();
 
 @RoutePage()
 class VideosListScreen extends StatefulWidget {
@@ -18,8 +20,7 @@ class _VideosListScreenState extends State<VideosListScreen> {
 
   void go2Details () => AutoRouter.of(context).push(const VideoDetailsRoute(),);
   void getVideos () {
-    final vs = ServiceModule.videoService();
-    vs.getVideos();
+    appState.getVideos();
   }
 
   @override
