@@ -14,7 +14,7 @@ class Application extends StatelessWidget {
       onGenerateTitle: (context) => L10n.of(context).appTitle,
       localizationsDelegates: L10n.localizationDelegates,
       supportedLocales: L10n.supportedLocales,
-      locale: L10n.locale,
+      // locale: L10n.locale,
       theme: ThemeData(),
       routerConfig: appRouter.config(),
     );
