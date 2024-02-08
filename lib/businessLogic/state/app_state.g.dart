@@ -41,6 +41,22 @@ mixin _$AppState on _AppState, Store {
     });
   }
 
+  late final _$mainVideoAtom =
+      Atom(name: '_AppState.mainVideo', context: context);
+
+  @override
+  Video? get mainVideo {
+    _$mainVideoAtom.reportRead();
+    return super.mainVideo;
+  }
+
+  @override
+  set mainVideo(Video? value) {
+    _$mainVideoAtom.reportWrite(value, super.mainVideo, () {
+      super.mainVideo = value;
+    });
+  }
+
   late final _$listVideoAtom =
       Atom(name: '_AppState.listVideo', context: context);
 
@@ -103,6 +119,7 @@ mixin _$AppState on _AppState, Store {
     return '''
 currentVideosPage: ${currentVideosPage},
 currentVideId: ${currentVideId},
+mainVideo: ${mainVideo},
 listVideo: ${listVideo}
     ''';
   }

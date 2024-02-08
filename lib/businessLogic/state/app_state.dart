@@ -18,13 +18,19 @@ abstract class _AppState with Store {
   int currentVideId = 0;
 
   @observable
+  Video? mainVideo;
+
+  @observable
   List<Video> listVideo = [];
 
   @action
   Future<void> getVideos() async {
     try {
       final VideosResponse response = await _repository.getVideos(page: currentVideosPage);
+      mainVideo = response.main;
       listVideo = response.data;
+
+      print('getVideos ${response.main?.url}');
     } on Exception catch (e) {
       print('getVideos Exception: $e');
     }
