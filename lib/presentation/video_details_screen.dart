@@ -1,6 +1,8 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:test_player/internal/dependencies/state_module.dart';
+import 'package:test_player/presentation/components/img_with_duration.dart';
+import 'package:test_player/presentation/components/video_description.dart';
 import 'package:test_player/presentation/components/web_decorator.dart';
 
 final appState = StateModule.appState();
@@ -14,8 +16,16 @@ class VideoDetailsScreen extends StatelessWidget {
     var currentVideo = appState.getCurrentVideo();
     return WebDecorator(
       child: Scaffold(
-        appBar: AppBar(title: const Text('VideoDetails')),
-        body: Center(child: Text(currentVideo.name)),),
+        appBar: AppBar(),
+        body: Column(
+          children: [
+            ImgWithDuration(imageUrl: currentVideo.image, duration: currentVideo.duration,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: VideoDescription(video: currentVideo),
+            )
+          ],
+        ),),
     );
   }
 }
