@@ -5,6 +5,7 @@ class ServiceModule {
   static VideoService? _videoService;
 
   static VideoService videoService() {
-    return _videoService ??= VideoService(const VideosDataProviderMock());
+    return _videoService ??= VideoService(
+      const VideosDataProviderMock(), const LikesDataProviderMock());
   }
 }

@@ -63,9 +63,9 @@ class _VideosListScreenState extends State<VideosListScreen> {
                         imageUrl: appState.mainVideo?.image ?? '',
                         duration: appState.mainVideo?.duration ?? 0),
                       if (appState.mainVideo != null) 
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: horPadding),
-                          child: VideoDescription(video: appState.mainVideo!),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: horPadding),
+                          child: VideoDescription(mainVideo: true),
                         )
                     ],
                   );

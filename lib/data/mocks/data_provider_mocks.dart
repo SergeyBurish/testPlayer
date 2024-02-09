@@ -45,7 +45,6 @@ final class VideosDataProviderMock implements VideosDataProvider {
 
     //Иногда может вылететь ошибка
     if (Random().nextInt(4) == 0) {
-      print('------ getVideos throw Exception -----');
       throw Exception('Unexpected error');
     }
 

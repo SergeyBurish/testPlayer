@@ -5,4 +5,6 @@ abstract class Repository {
     required int page,
     String? search,
   });
+
+  Future<Video> setLike({required int id, required bool like});
 }

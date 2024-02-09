@@ -25,22 +25,6 @@ mixin _$AppState on _AppState, Store {
     });
   }
 
-  late final _$currentVideIdAtom =
-      Atom(name: '_AppState.currentVideId', context: context);
-
-  @override
-  int get currentVideId {
-    _$currentVideIdAtom.reportRead();
-    return super.currentVideId;
-  }
-
-  @override
-  set currentVideId(int value) {
-    _$currentVideIdAtom.reportWrite(value, super.currentVideId, () {
-      super.currentVideId = value;
-    });
-  }
-
   late final _$mainVideoAtom =
       Atom(name: '_AppState.mainVideo', context: context);
 
@@ -54,6 +38,22 @@ mixin _$AppState on _AppState, Store {
   set mainVideo(Video? value) {
     _$mainVideoAtom.reportWrite(value, super.mainVideo, () {
       super.mainVideo = value;
+    });
+  }
+
+  late final _$currentVideoAtom =
+      Atom(name: '_AppState.currentVideo', context: context);
+
+  @override
+  Video? get currentVideo {
+    _$currentVideoAtom.reportRead();
+    return super.currentVideo;
+  }
+
+  @override
+  set currentVideo(Video? value) {
+    _$currentVideoAtom.reportWrite(value, super.currentVideo, () {
+      super.currentVideo = value;
     });
   }
 
@@ -90,6 +90,15 @@ mixin _$AppState on _AppState, Store {
         .run(() => super.getVideosNextPage(onFail: onFail));
   }
 
+  late final _$setLikeAsyncAction =
+      AsyncAction('_AppState.setLike', context: context);
+
+  @override
+  Future<void> setLike(int id, bool like, {required Function onFail}) {
+    return _$setLikeAsyncAction
+        .run(() => super.setLike(id, like, onFail: onFail));
+  }
+
   late final _$_AppStateActionController =
       ActionController(name: '_AppState', context: context);
 
@@ -105,22 +114,11 @@ mixin _$AppState on _AppState, Store {
   }
 
   @override
-  Video getCurrentVideo() {
-    final _$actionInfo = _$_AppStateActionController.startAction(
-        name: '_AppState.getCurrentVideo');
-    try {
-      return super.getCurrentVideo();
-    } finally {
-      _$_AppStateActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
 currentVideosPage: ${currentVideosPage},
-currentVideId: ${currentVideId},
 mainVideo: ${mainVideo},
+currentVideo: ${currentVideo},
 listVideo: ${listVideo}
     ''';
   }

@@ -11,4 +11,9 @@ class DataRepository extends Repository{
   Future<VideosResponse> getVideos({required int page, String? search}) {
     return _videoService.getVideos();
   }
+
+  @override
+  Future<Video> setLike({required int id, required bool like}) {
+    return _videoService.setLike(id, like);
+  }
 }

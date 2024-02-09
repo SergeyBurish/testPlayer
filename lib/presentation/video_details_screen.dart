@@ -13,16 +13,17 @@ class VideoDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var currentVideo = appState.getCurrentVideo();
     return WebDecorator(
       child: Scaffold(
         appBar: AppBar(),
         body: Column(
           children: [
-            ImgWithDuration(imageUrl: currentVideo.image, duration: currentVideo.duration,),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: VideoDescription(video: currentVideo),
+            ImgWithDuration(
+              imageUrl: appState.currentVideo?.image ?? '', 
+              duration: appState.currentVideo?.duration ?? 0,),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: VideoDescription(),
             )
           ],
         ),),

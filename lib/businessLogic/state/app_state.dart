@@ -15,10 +15,10 @@ abstract class _AppState with Store {
   int currentVideosPage = 1;
 
   @observable
-  int currentVideId = 0;
+  Video? mainVideo;
 
   @observable
-  Video? mainVideo;
+  Video? currentVideo;
 
   @observable
   List<Video> listVideo = [];
@@ -45,14 +45,32 @@ abstract class _AppState with Store {
   }
 
   @action
-  void setCurrentVideoId(int id) {
-    currentVideId = id;
+  Future<void> setLike(int id, bool like, {required Function onFail}) async {
+    try {
+      Video updatedVideo = await _repository.setLike(id: id, like: like);
+
+      if (mainVideo?.id == id) {
+        mainVideo = updatedVideo;
+      } else {
+        currentVideo = updatedVideo;
+
+        List<Video> updatedListVideo = [];
+        for (var video in listVideo) {
+          if (video.id == id) {
+            updatedListVideo.add(updatedVideo);
+          } else {
+            updatedListVideo.add(video);
+          }
+        }
+        listVideo = updatedListVideo;
+      }
+    } on Exception {
+      onFail();
+    }
   }
 
   @action
-  Video getCurrentVideo() {
-    var currentVideo = listVideo.firstWhere((video) => video.id == currentVideId);
-    // TODO: handle not found
-    return currentVideo;
+  void setCurrentVideoId(int id) {
+    currentVideo = listVideo.firstWhere((video) => video.id == id);
   }
 }
