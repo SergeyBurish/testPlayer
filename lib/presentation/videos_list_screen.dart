@@ -21,21 +21,17 @@ class VideosListScreen extends StatefulWidget {
 
 class _VideosListScreenState extends State<VideosListScreen> {
 
-  bool failToGetVideos = false;
   late TextEditingController textController;
 
-  void setFail () => setState(() => failToGetVideos = true);
-
   void retry () {
-    setState(() => failToGetVideos = false);
-    appState.getVideos(search: appState.searchText, onFail: setFail);
+    appState.getVideos(search: appState.searchText);
   }
 
   @override
   void initState() {
     super.initState();
     textController = TextEditingController();
-    appState.getVideos(onFail: setFail);
+    appState.getVideos();
   }
 
   @override
@@ -59,16 +55,16 @@ class _VideosListScreenState extends State<VideosListScreen> {
               title: CupertinoSearchTextField(
                 controller: textController,
                 placeholder: L10n.of(context).searchVideo,
-                onSubmitted: (text) => appState.getVideos(search: text, onFail: setFail),
+                onSubmitted: (text) => appState.getVideos(search: text),
                 onSuffixTap: () {
                   textController.clear();
-                  appState.getVideos(onFail: setFail);
+                  appState.getVideos();
                 },
               ),
             ) : 
             AppBar(title: Text(L10n.of(context).listVideos)),
           body: Center(child: () {
-            if (failToGetVideos) {
+            if (appState.failToGetVideos) {
               return Column(
                 children: [
                   Text(L10n.of(context).failLoadVideos),

@@ -9,6 +9,22 @@ part of 'app_state.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$AppState on _AppState, Store {
+  late final _$failToGetVideosAtom =
+      Atom(name: '_AppState.failToGetVideos', context: context);
+
+  @override
+  bool get failToGetVideos {
+    _$failToGetVideosAtom.reportRead();
+    return super.failToGetVideos;
+  }
+
+  @override
+  set failToGetVideos(bool value) {
+    _$failToGetVideosAtom.reportWrite(value, super.failToGetVideos, () {
+      super.failToGetVideos = value;
+    });
+  }
+
   late final _$currentVideosPageAtom =
       Atom(name: '_AppState.currentVideosPage', context: context);
 
@@ -22,6 +38,21 @@ mixin _$AppState on _AppState, Store {
   set currentVideosPage(int value) {
     _$currentVideosPageAtom.reportWrite(value, super.currentVideosPage, () {
       super.currentVideosPage = value;
+    });
+  }
+
+  late final _$hasMoreAtom = Atom(name: '_AppState.hasMore', context: context);
+
+  @override
+  bool get hasMore {
+    _$hasMoreAtom.reportRead();
+    return super.hasMore;
+  }
+
+  @override
+  set hasMore(bool value) {
+    _$hasMoreAtom.reportWrite(value, super.hasMore, () {
+      super.hasMore = value;
     });
   }
 
@@ -109,18 +140,24 @@ mixin _$AppState on _AppState, Store {
       AsyncAction('_AppState.getVideos', context: context);
 
   @override
-  Future<void> getVideos({String? search, required Function onFail}) {
-    return _$getVideosAsyncAction
-        .run(() => super.getVideos(search: search, onFail: onFail));
+  Future<void> getVideos({String? search}) {
+    return _$getVideosAsyncAction.run(() => super.getVideos(search: search));
   }
 
   late final _$getVideosNextPageAsyncAction =
       AsyncAction('_AppState.getVideosNextPage', context: context);
 
   @override
-  Future<void> getVideosNextPage({required Function onFail}) {
-    return _$getVideosNextPageAsyncAction
-        .run(() => super.getVideosNextPage(onFail: onFail));
+  Future<void> getVideosNextPage() {
+    return _$getVideosNextPageAsyncAction.run(() => super.getVideosNextPage());
+  }
+
+  late final _$getVideosPrevPageAsyncAction =
+      AsyncAction('_AppState.getVideosPrevPage', context: context);
+
+  @override
+  Future<void> getVideosPrevPage() {
+    return _$getVideosPrevPageAsyncAction.run(() => super.getVideosPrevPage());
   }
 
   late final _$setLikeAsyncAction =
@@ -171,7 +208,9 @@ mixin _$AppState on _AppState, Store {
   @override
   String toString() {
     return '''
+failToGetVideos: ${failToGetVideos},
 currentVideosPage: ${currentVideosPage},
+hasMore: ${hasMore},
 mainVideo: ${mainVideo},
 currentVideo: ${currentVideo},
 listVideo: ${listVideo},

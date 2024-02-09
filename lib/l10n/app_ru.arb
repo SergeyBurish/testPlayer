@@ -13,5 +13,7 @@
   "monthes": "месяцев",
   "weeks": "недели",
   "days": "дней",
-  "searchVideo": "Поиск видео"
+  "searchVideo": "Поиск видео",
+  "next": "Следующая",
+  "previous": "Предыдущая"
 }

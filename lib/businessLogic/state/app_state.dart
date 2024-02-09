@@ -12,7 +12,13 @@ abstract class _AppState with Store {
   _AppState(this._repository);
 
   @observable
+  bool failToGetVideos = false;
+
+  @observable
   int currentVideosPage = 1;
+
+  @observable
+  bool hasMore = false;
 
   @observable
   Video? mainVideo;
@@ -30,25 +36,53 @@ abstract class _AppState with Store {
   String? searchText;
 
   @action
-  Future<void> getVideos({String? search, required Function onFail}) async {
+  Future<void> getVideos({String? search}) async {
+    failToGetVideos = false;
     searchText = search;
     try {
       final VideosResponse response = await _repository.getVideos(
         page: currentVideosPage, search: search);
       mainVideo = response.main;
       listVideo = response.data;
+      hasMore = response.pagination.hasMore;
     } on Exception {
-      onFail();
+      failToGetVideos = true;
     }
   }
 
   @action
-  Future<void> getVideosNextPage({required Function onFail}) async {
+  Future<void> getVideosNextPage() async {
+    if (!hasMore) {
+      return;
+    }
+
+    failToGetVideos = false;
     try {
-      await _repository.getVideos(page: currentVideosPage + 1);
+      VideosResponse response = await _repository.getVideos(page: currentVideosPage + 1, search: searchText);
+      mainVideo = response.main;
+      listVideo = response.data;
+      hasMore = response.pagination.hasMore;
       currentVideosPage ++;
     } on Exception {
-      onFail();
+      failToGetVideos = true;
+    }
+  }
+
+  @action
+  Future<void> getVideosPrevPage() async {
+    if (currentVideosPage < 2) {
+      return;
+    }
+    
+    failToGetVideos = false;
+    try {
+      VideosResponse response = await _repository.getVideos(page: currentVideosPage - 1, search: searchText);
+      mainVideo = response.main;
+      listVideo = response.data;
+      hasMore = response.pagination.hasMore;
+      currentVideosPage --;
+    } on Exception {
+      failToGetVideos = true;
     }
   }
 

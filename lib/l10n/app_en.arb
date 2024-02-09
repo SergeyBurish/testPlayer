@@ -13,5 +13,7 @@
   "monthes": "monthes",
   "weeks": "weeks",
   "days": "days",
-  "searchVideo": "Search video"
+  "searchVideo": "Search video",
+  "next": "Next",
+  "previous": "Previous"
 }
