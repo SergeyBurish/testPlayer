@@ -78,6 +78,14 @@ flutter:
   assets:
     - assets/heart.svg
     - assets/heartRed.svg
+    - assets/id10-mock.jpg
+    - assets/id19-mock.jpeg
+    - assets/id20-mock.jpg
+    - assets/id21-mock.jpg
+    - assets/id22-mock.webp
+    - assets/id23-mock.jpg
+    - assets/id24-mock.webp
+    - assets/id25-mock.webp
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
