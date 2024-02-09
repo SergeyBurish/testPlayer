@@ -4,7 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:test_player/internal/dependencies/state_module.dart';
 import 'package:test_player/l10n/l10n.dart';
 import 'package:test_player/presentation/components/img_with_duration.dart';
-import 'package:test_player/presentation/components/videos_list.dart';
+import 'package:test_player/presentation/components/list/videos_list.dart';
 import 'package:test_player/presentation/components/web_decorator.dart';
 
 final appState = StateModule.appState();
@@ -39,7 +39,12 @@ class _VideosListScreenState extends State<VideosListScreen> {
               }
             ),
             Text(L10n.of(context).allVideos),
-            const Expanded(child: VideosList()),
+            const Expanded(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 15),
+                child: VideosList(),
+              )
+            ),
           ],
         )),
       ),

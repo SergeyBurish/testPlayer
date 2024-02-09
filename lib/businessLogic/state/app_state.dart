@@ -29,8 +29,6 @@ abstract class _AppState with Store {
       final VideosResponse response = await _repository.getVideos(page: currentVideosPage);
       mainVideo = response.main;
       listVideo = response.data;
-
-      print('getVideos ${response.main?.url}');
     } on Exception catch (e) {
       print('getVideos Exception: $e');
     }

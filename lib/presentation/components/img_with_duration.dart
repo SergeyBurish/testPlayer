@@ -5,10 +5,15 @@ import 'package:test_player/internal/utils.dart';
 class ImgWithDuration extends StatelessWidget {
   final String imageUrl;
   final int duration;
-  const ImgWithDuration({super.key, required this.imageUrl, required this.duration});
+  final bool small;
+  const ImgWithDuration({
+    super.key, required this.imageUrl, required this.duration, this.small = false});
 
   @override
   Widget build(BuildContext context) {
+    final lablePadding = small ? 7.0 : 14.0;
+    final fontSize = small ? 12.0 : 14.0;
+
     return Stack(
       children: [
         CachedNetworkImage(
@@ -25,7 +30,7 @@ class ImgWithDuration extends StatelessWidget {
             child: Container(
               alignment: Alignment.bottomRight,
               child: Padding(
-                padding: const EdgeInsets.only(right: 14, bottom: 14),
+                padding: EdgeInsets.only(right: lablePadding, bottom: lablePadding),
                 child: Container(
                   decoration: const BoxDecoration(
                     color: Colors.black,
@@ -33,7 +38,9 @@ class ImgWithDuration extends StatelessWidget {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 5), // .all(4),
-                    child: Text(Utils.timeFormat(duration), style: const TextStyle(color: Colors.white),),
+                    child: Text(
+                      style: TextStyle(color: Colors.white, fontSize: fontSize),
+                      Utils.timeFormat(duration),),
                   )
                 ),
               ),

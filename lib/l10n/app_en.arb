@@ -1,5 +1,11 @@
 {
   "appTitle": "Test Player",
   "listVideos": "List of videos",
-  "allVideos": "All videos"
+  "allVideos": "All videos",
+  "views": "{viewsNumber} views",
+  "ago": "{time} ago",
+  "years": "years",
+  "monthes": "monthes",
+  "weeks": "weeks",
+  "days": "days"
 }

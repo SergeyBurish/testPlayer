@@ -1,5 +1,11 @@
 {
   "appTitle": "Тестовый видеоплеер",
   "listVideos": "Список видео",
-  "allVideos": "Все видео"
+  "allVideos": "Все видео",
+  "views": "{viewsNumber} просмотров",
+  "ago": "{time} назад",
+  "years": "лет",
+  "monthes": "месяцев",
+  "weeks": "недели",
+  "days": "дней"
 }
