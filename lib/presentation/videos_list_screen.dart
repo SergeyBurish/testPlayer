@@ -5,6 +5,7 @@ import 'package:test_player/internal/dependencies/state_module.dart';
 import 'package:test_player/l10n/l10n.dart';
 import 'package:test_player/presentation/components/img_with_duration.dart';
 import 'package:test_player/presentation/components/list/videos_list.dart';
+import 'package:test_player/presentation/components/video_description.dart';
 import 'package:test_player/presentation/components/web_decorator.dart';
 
 final appState = StateModule.appState();
@@ -27,21 +28,32 @@ class _VideosListScreenState extends State<VideosListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    const horPadding = 15.0;
+
     return WebDecorator(
       child: Scaffold(
         appBar: AppBar(title: Text(L10n.of(context).listVideos)),
         body: Center(child: Column(
           children: [
             Observer( builder: (_) {
-              return ImgWithDuration(
-                imageUrl: appState.mainVideo?.image ?? '',
-                duration: appState.mainVideo?.duration ?? 0);
+              return Column(
+                children: [
+                  ImgWithDuration(
+                    imageUrl: appState.mainVideo?.image ?? '',
+                    duration: appState.mainVideo?.duration ?? 0),
+                  if (appState.mainVideo != null) 
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: horPadding),
+                      child: VideoDescription(video: appState.mainVideo!),
+                    )
+                ],
+              );
               }
             ),
             Text(L10n.of(context).allVideos),
             const Expanded(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
+                padding: EdgeInsets.symmetric(horizontal: horPadding),
                 child: VideosList(),
               )
             ),

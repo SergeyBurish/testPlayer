@@ -29,9 +29,7 @@ class VideoDescriptionSmall extends StatelessWidget {
               ],
             ),
             SvgPicture.asset(
-              hartIcon,
-              width: 30,
-              height: 30,
+              hartIcon, width: 30, height: 30,
             )
           ],
         ),
