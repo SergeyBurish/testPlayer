@@ -9,7 +9,7 @@ class DataRepository extends Repository{
 
   @override
   Future<VideosResponse> getVideos({required int page, String? search}) {
-    return _videoService.getVideos();
+    return _videoService.getVideos(page, search);
   }
 
   @override

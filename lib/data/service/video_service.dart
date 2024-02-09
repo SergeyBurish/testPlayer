@@ -8,8 +8,8 @@ class VideoService {
 
   VideoService(this._videosDataProvider, this._likesDataProvider);
   
-  Future<VideosResponse> getVideos () async {
-    return  await _videosDataProvider.getVideos(page: 1);
+  Future<VideosResponse> getVideos (int page, String? search) async {
+    return  await _videosDataProvider.getVideos(page: page, search: search);
   }
 
   Future<Video> setLike (int id, bool like) async {

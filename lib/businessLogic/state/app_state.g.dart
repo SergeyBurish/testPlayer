@@ -73,12 +73,45 @@ mixin _$AppState on _AppState, Store {
     });
   }
 
+  late final _$searchModeAtom =
+      Atom(name: '_AppState.searchMode', context: context);
+
+  @override
+  bool get searchMode {
+    _$searchModeAtom.reportRead();
+    return super.searchMode;
+  }
+
+  @override
+  set searchMode(bool value) {
+    _$searchModeAtom.reportWrite(value, super.searchMode, () {
+      super.searchMode = value;
+    });
+  }
+
+  late final _$searchTextAtom =
+      Atom(name: '_AppState.searchText', context: context);
+
+  @override
+  String? get searchText {
+    _$searchTextAtom.reportRead();
+    return super.searchText;
+  }
+
+  @override
+  set searchText(String? value) {
+    _$searchTextAtom.reportWrite(value, super.searchText, () {
+      super.searchText = value;
+    });
+  }
+
   late final _$getVideosAsyncAction =
       AsyncAction('_AppState.getVideos', context: context);
 
   @override
-  Future<void> getVideos({required Function onFail}) {
-    return _$getVideosAsyncAction.run(() => super.getVideos(onFail: onFail));
+  Future<void> getVideos({String? search, required Function onFail}) {
+    return _$getVideosAsyncAction
+        .run(() => super.getVideos(search: search, onFail: onFail));
   }
 
   late final _$getVideosNextPageAsyncAction =
@@ -114,12 +147,36 @@ mixin _$AppState on _AppState, Store {
   }
 
   @override
+  void setSearchMode(bool search) {
+    final _$actionInfo = _$_AppStateActionController.startAction(
+        name: '_AppState.setSearchMode');
+    try {
+      return super.setSearchMode(search);
+    } finally {
+      _$_AppStateActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setSearchText(String text) {
+    final _$actionInfo = _$_AppStateActionController.startAction(
+        name: '_AppState.setSearchText');
+    try {
+      return super.setSearchText(text);
+    } finally {
+      _$_AppStateActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 currentVideosPage: ${currentVideosPage},
 mainVideo: ${mainVideo},
 currentVideo: ${currentVideo},
-listVideo: ${listVideo}
+listVideo: ${listVideo},
+searchMode: ${searchMode},
+searchText: ${searchText}
     ''';
   }
 }

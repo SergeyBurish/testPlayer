@@ -23,10 +23,18 @@ abstract class _AppState with Store {
   @observable
   List<Video> listVideo = [];
 
+  @observable
+  bool searchMode = false;
+
+  @observable
+  String? searchText;
+
   @action
-  Future<void> getVideos({required Function onFail}) async {
+  Future<void> getVideos({String? search, required Function onFail}) async {
+    searchText = search;
     try {
-      final VideosResponse response = await _repository.getVideos(page: currentVideosPage);
+      final VideosResponse response = await _repository.getVideos(
+        page: currentVideosPage, search: search);
       mainVideo = response.main;
       listVideo = response.data;
     } on Exception {
@@ -72,5 +80,15 @@ abstract class _AppState with Store {
   @action
   void setCurrentVideoId(int id) {
     currentVideo = listVideo.firstWhere((video) => video.id == id);
+  }
+
+  @action
+  void setSearchMode(bool search) {
+    searchMode = search;
+  }
+
+  @action
+  void setSearchText(String text) {
+    searchText = text;
   }
 }
