@@ -77,16 +77,17 @@ mixin _$AppState on _AppState, Store {
       AsyncAction('_AppState.getVideos', context: context);
 
   @override
-  Future<void> getVideos() {
-    return _$getVideosAsyncAction.run(() => super.getVideos());
+  Future<void> getVideos({required Function onFail}) {
+    return _$getVideosAsyncAction.run(() => super.getVideos(onFail: onFail));
   }
 
   late final _$getVideosNextPageAsyncAction =
       AsyncAction('_AppState.getVideosNextPage', context: context);
 
   @override
-  Future<void> getVideosNextPage() {
-    return _$getVideosNextPageAsyncAction.run(() => super.getVideosNextPage());
+  Future<void> getVideosNextPage({required Function onFail}) {
+    return _$getVideosNextPageAsyncAction
+        .run(() => super.getVideosNextPage(onFail: onFail));
   }
 
   late final _$_AppStateActionController =

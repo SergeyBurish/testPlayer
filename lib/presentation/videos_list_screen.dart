@@ -20,10 +20,19 @@ class VideosListScreen extends StatefulWidget {
 
 class _VideosListScreenState extends State<VideosListScreen> {
 
+  bool failToGetVideos = false;
+
+  void setFail () => setState(() => failToGetVideos = true);
+  
+  void retry () {
+    setState(() => failToGetVideos = false);
+    appState.getVideos(onFail: setFail);
+  }
+
   @override
   void initState() {
     super.initState();
-    appState.getVideos();
+    appState.getVideos(onFail: setFail);
   }
 
   @override
@@ -33,32 +42,46 @@ class _VideosListScreenState extends State<VideosListScreen> {
     return WebDecorator(
       child: Scaffold(
         appBar: AppBar(title: Text(L10n.of(context).listVideos)),
-        body: Center(child: Column(
-          children: [
-            Observer( builder: (_) {
-              return Column(
-                children: [
-                  ImgWithDuration(
-                    imageUrl: appState.mainVideo?.image ?? '',
-                    duration: appState.mainVideo?.duration ?? 0),
-                  if (appState.mainVideo != null) 
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: horPadding),
-                      child: VideoDescription(video: appState.mainVideo!),
-                    )
-                ],
-              );
-              }
-            ),
-            Text(L10n.of(context).allVideos),
-            const Expanded(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: horPadding),
-                child: VideosList(),
-              )
-            ),
-          ],
-        )),
+        body: Center(child: () {
+          if (failToGetVideos) {
+            return Column(
+              children: [
+                Text(L10n.of(context).failLoadVideos),
+                ElevatedButton(
+                onPressed: retry, 
+                child: Text(L10n.of(context).retry),
+              ),
+              ],
+            );
+          } else {
+            return Column(
+              children: [
+                Observer( builder: (_) {
+                  return Column(
+                    children: [
+                      ImgWithDuration(
+                        imageUrl: appState.mainVideo?.image ?? '',
+                        duration: appState.mainVideo?.duration ?? 0),
+                      if (appState.mainVideo != null) 
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: horPadding),
+                          child: VideoDescription(video: appState.mainVideo!),
+                        )
+                    ],
+                  );
+                  }
+                ),
+                Text(L10n.of(context).allVideos),
+                const Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: horPadding),
+                    child: VideosList(),
+                  )
+                ),
+              ],
+            );
+          }
+        }())
       ),
     );
   }

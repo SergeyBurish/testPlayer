@@ -1,5 +1,9 @@
 {
   "appTitle": "Test Player",
+  "retry": "Retry",
+  "@_____________________ERRORS_____________________": {},
+  "failLoadVideos": "Fail to load videos",
+  "@_____________________VIDEOS_PAGE_____________________": {},
   "listVideos": "List of videos",
   "allVideos": "All videos",
   "views": "{viewsNumber} views",

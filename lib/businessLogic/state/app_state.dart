@@ -24,23 +24,23 @@ abstract class _AppState with Store {
   List<Video> listVideo = [];
 
   @action
-  Future<void> getVideos() async {
+  Future<void> getVideos({required Function onFail}) async {
     try {
       final VideosResponse response = await _repository.getVideos(page: currentVideosPage);
       mainVideo = response.main;
       listVideo = response.data;
-    } on Exception catch (e) {
-      print('getVideos Exception: $e');
+    } on Exception {
+      onFail();
     }
   }
 
   @action
-  Future<void> getVideosNextPage() async {
+  Future<void> getVideosNextPage({required Function onFail}) async {
     try {
       await _repository.getVideos(page: currentVideosPage + 1);
       currentVideosPage ++;
-    } on Exception catch (e) {
-      print('getVideosNextPage Exception: $e');
+    } on Exception {
+      onFail();
     }
   }
 
