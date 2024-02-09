@@ -93,19 +93,20 @@ abstract class _AppState with Store {
 
       if (mainVideo?.id == id) {
         mainVideo = updatedVideo;
-      } else {
-        currentVideo = updatedVideo;
+      } 
+        
+      currentVideo = updatedVideo;
 
-        List<Video> updatedListVideo = [];
-        for (var video in listVideo) {
-          if (video.id == id) {
-            updatedListVideo.add(updatedVideo);
-          } else {
-            updatedListVideo.add(video);
-          }
+      List<Video> updatedListVideo = [];
+      for (var video in listVideo) {
+        if (video.id == id) {
+          updatedListVideo.add(updatedVideo);
+        } else {
+          updatedListVideo.add(video);
         }
-        listVideo = updatedListVideo;
       }
+      listVideo = updatedListVideo;
+
     } on Exception {
       onFail();
     }
