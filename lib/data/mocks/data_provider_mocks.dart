@@ -159,5 +159,84 @@ final List<Map<String, dynamic>> _all = [
     'liked': true,
     'created_at': '2024-01-22T13:08:26Z'
   },
+
+  {
+    'id': 18,
+    'image':
+        'https://i0.wp.com/www.sciencenews.org/wp-content/uploads/2022/11/Hubble-Pillars-of-Creation.jpg?resize=1500%2C1565&ssl=1',
+    'name': 'AAA These are our top space images of all time',
+    'url': '-', // video url
+    'duration': 4210,
+    'views': 557678,
+    'liked': false,
+    'created_at': '2024-01-22T13:08:26Z'
+  },
+  {
+    'id': 17,
+    'image':
+        'https://www.krqe.com/wp-content/uploads/sites/12/2022/12/AdobeStock_81556974.jpeg?w=2560&h=1440&crop=1',
+    'name': 'AAA Space discoveries that will blow your mind',
+    'url': '-', // video url
+    'duration': 5312,
+    'views': 6662,
+    'liked': false,
+    'created_at': '2024-01-21T13:08:26Z'
+  },
+  {
+    'id': 16,
+    'image':
+        'https://images.hindustantimes.com/tech/img/2023/02/15/960x540/asteroid_1676434888953_1676434897704_1676434897704.jpg',
+    'name': 'AAA Asteroid today: Space rock speeding towards Earth at a fearsome 60905 kmph',
+    'url': '-', // video url
+    'duration': 245,
+    'views': 65438,
+    'liked': false,
+    'created_at': '2024-01-19T13:08:26Z'
+  },
+  {
+    'id': 14,
+    'image':
+        'https://i0.wp.com/spacenews.com/wp-content/uploads/2023/11/Millennium_Space_Systems_completes_MTC-scaled.jpg?fit=1200%2C750&ssl=1',
+    'name': 'BBB 20 amazing facts about space and astronomy',
+    'url': '-', // video url
+    'duration': 6541,
+    'views': 742,
+    'liked': true,
+    'created_at': '2024-01-18T13:08:26Z'
+  },
+  {
+    'id': 13,
+    'image':
+        'https://img.freepik.com/free-photo/glowing-spaceship-orbits-planet-starry-galaxy-generated-by-ai_188544-9655.jpg?size=626&ext=jpg&ga=GA1.1.632798143.1705795200&semt=sph',
+    'name':
+        'BBB Space Force\'s first six missile-defense satellites in medium orbit to cost about \$500 million',
+    'url': '-', // video url
+    'duration': 873,
+    'views': 845623902,
+    'liked': true,
+    'created_at': '2023-12-22T13:08:26Z'
+  },
+  {
+    'id': 12,
+    'image': 'https://www.witf.io/wp-content/uploads/2020/11/iStock-1159238834-1628x1080.jpg',
+    'name': 'BBB Scientists discover outer space isn\'t pitch-black after all',
+    'url': '-', // video url
+    'duration': 7634,
+    'views': 76523,
+    'liked': false,
+    'created_at': '2024-01-22T13:08:26Z'
+  },
+  {
+    'id': 11,
+    'image':
+        'https://www.polytechnique-insights.com/wp-content/uploads/2022/11/adobestock_402438380-1-1537x600.jpeg',
+    'name': 'BBB The changing face of the space industry',
+    'url': '-', // video url
+    'duration': 123,
+    'views': 8972345,
+    'liked': true,
+    'created_at': '2024-01-22T13:08:26Z'
+  },
+
   _main,
 ];
