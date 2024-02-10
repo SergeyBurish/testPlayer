@@ -47,6 +47,7 @@ dependencies:
   flutter_svg: ^2.0.9
 
 dev_dependencies:
+  flutter_launcher_icons: "^0.13.1"
   auto_route_generator: ^7.3.2
   build_runner: ^2.4.8
   mobx_codegen: ^2.6.0+1
@@ -61,6 +62,13 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   freezed: ^2.4.7
   json_serializable: ^6.7.1
+
+flutter_launcher_icons:
+  web:
+    generate: true
+    image_path: "assets/icons/play.png"
+    background_color: "#FFFFFF"
+    theme_color: "#FFFFFF"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
