@@ -16,15 +16,7 @@ class ImgWithDuration extends StatelessWidget {
 
     return Stack(
       children: [
-        CachedNetworkImage(
-          progressIndicatorBuilder: (context, url, progress) => Center(
-            child: CircularProgressIndicator(
-              value: progress.progress,
-            ),
-          ),
-          errorWidget: (context, url, error) => const Icon(Icons.broken_image),
-          imageUrl: imageUrl,
-        ),
+        Image.asset(imageUrl),
         if (Uri.parse(imageUrl).isAbsolute)
           Positioned.fill(
             child: Container(
