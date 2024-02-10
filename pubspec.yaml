@@ -28,6 +28,12 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  mobx: ^2.3.0+1
+  flutter_mobx: ^2.2.0+2
+  auto_route: ^7.8.4
+  intl: any
+  flutter_localizations:
+    sdk: flutter
   flutter:
     sdk: flutter
 
@@ -35,10 +41,28 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.8.1
+  cached_network_image: ^3.3.1
+  flutter_svg: ^2.0.9
 
 dev_dependencies:
+  flutter_launcher_icons: "^0.13.1"
+  auto_route_generator: ^7.3.2
+  build_runner: ^2.4.8
+  mobx_codegen: ^2.6.0+1
   flutter_test:
     sdk: flutter
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/play.png"
+  web:
+    generate: true
+    image_path: "assets/icons/play.png"
+    background_color: "#FFFFFF"
+    theme_color: "#FFFFFF"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -46,6 +70,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  freezed: ^2.4.7
+  json_serializable: ^6.7.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -57,11 +83,12 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  generate: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/heart.svg
+    - assets/heartRed.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

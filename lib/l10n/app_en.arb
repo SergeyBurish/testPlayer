@@ -1,0 +1,19 @@
+{
+  "appTitle": "Test Player",
+  "retry": "Retry",
+  "@_____________________ERRORS_____________________": {},
+  "failLoadVideos": "Fail to load videos",
+  "failSetLike": "Fail to set like",
+  "@_____________________VIDEOS_PAGE_____________________": {},
+  "listVideos": "List of videos",
+  "allVideos": "All videos",
+  "views": "{viewsNumber} views",
+  "ago": "{time} ago",
+  "years": "years",
+  "monthes": "monthes",
+  "weeks": "weeks",
+  "days": "days",
+  "searchVideo": "Search video",
+  "next": "Next",
+  "previous": "Previous"
+}
