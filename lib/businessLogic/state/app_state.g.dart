@@ -25,6 +25,21 @@ mixin _$AppState on _AppState, Store {
     });
   }
 
+  late final _$loadingAtom = Atom(name: '_AppState.loading', context: context);
+
+  @override
+  bool get loading {
+    _$loadingAtom.reportRead();
+    return super.loading;
+  }
+
+  @override
+  set loading(bool value) {
+    _$loadingAtom.reportWrite(value, super.loading, () {
+      super.loading = value;
+    });
+  }
+
   late final _$currentVideosPageAtom =
       Atom(name: '_AppState.currentVideosPage', context: context);
 
@@ -209,6 +224,7 @@ mixin _$AppState on _AppState, Store {
   String toString() {
     return '''
 failToGetVideos: ${failToGetVideos},
+loading: ${loading},
 currentVideosPage: ${currentVideosPage},
 hasMore: ${hasMore},
 mainVideo: ${mainVideo},

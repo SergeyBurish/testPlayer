@@ -15,6 +15,9 @@ abstract class _AppState with Store {
   bool failToGetVideos = false;
 
   @observable
+  bool loading = false;
+
+  @observable
   int currentVideosPage = 1;
 
   @observable
@@ -42,6 +45,8 @@ abstract class _AppState with Store {
       currentVideosPage = 1;
     }
     searchText = search;
+
+    loading = true;
     try {
       final VideosResponse response = await _repository.getVideos(
         page: currentVideosPage, search: search);
@@ -51,6 +56,7 @@ abstract class _AppState with Store {
     } on Exception {
       failToGetVideos = true;
     }
+    loading = false;
   }
 
   @action
@@ -60,6 +66,7 @@ abstract class _AppState with Store {
     }
 
     failToGetVideos = false;
+    loading = true;
     try {
       VideosResponse response = await _repository.getVideos(page: currentVideosPage + 1, search: searchText);
       mainVideo = response.main;
@@ -69,6 +76,7 @@ abstract class _AppState with Store {
     } on Exception {
       failToGetVideos = true;
     }
+    loading = false;
   }
 
   @action
@@ -78,6 +86,7 @@ abstract class _AppState with Store {
     }
     
     failToGetVideos = false;
+    loading = true;
     try {
       VideosResponse response = await _repository.getVideos(page: currentVideosPage - 1, search: searchText);
       mainVideo = response.main;
@@ -87,10 +96,13 @@ abstract class _AppState with Store {
     } on Exception {
       failToGetVideos = true;
     }
+    loading = false;
   }
 
   @action
   Future<void> setLike(int id, bool like, {required Function onFail}) async {
+
+    loading = true;
     try {
       Video updatedVideo = await _repository.setLike(id: id, like: like);
 
@@ -113,6 +125,7 @@ abstract class _AppState with Store {
     } on Exception {
       onFail();
     }
+    loading = false;
   }
 
   @action
