@@ -38,6 +38,9 @@ abstract class _AppState with Store {
   @action
   Future<void> getVideos({String? search}) async {
     failToGetVideos = false;
+    if (searchText != search) {
+      currentVideosPage = 1;
+    }
     searchText = search;
     try {
       final VideosResponse response = await _repository.getVideos(
