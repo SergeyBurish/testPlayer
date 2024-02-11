@@ -6,6 +6,7 @@ import 'package:test_player/internal/dependencies/state_module.dart';
 import 'package:test_player/l10n/l10n.dart';
 import 'package:test_player/presentation/components/img_with_duration.dart';
 import 'package:test_player/presentation/components/list/videos_list.dart';
+import 'package:test_player/presentation/components/loading_indicator.dart';
 import 'package:test_player/presentation/components/video_description.dart';
 import 'package:test_player/presentation/components/web_decorator.dart';
 
@@ -46,6 +47,11 @@ class _VideosListScreenState extends State<VideosListScreen> {
 
     return WebDecorator(
       child: Observer( builder: (_) {
+        if (appState.loading) {
+          LoadingIndicator.show(context);
+        } else {
+          LoadingIndicator.hide(context);
+        }
         return Scaffold(
           appBar: appState.searchMode ? 
             AppBar(
@@ -77,10 +83,10 @@ class _VideosListScreenState extends State<VideosListScreen> {
             } else {
               return Column(
                 children: [
-                  if (!appState.searchMode)
+                  if (!appState.searchMode && appState.mainVideo != null)
                     ImgWithDuration(
-                      imageUrl: appState.mainVideo?.image ?? '',
-                      duration: appState.mainVideo?.duration ?? 0),
+                      imageUrl: appState.mainVideo!.image,
+                      duration: appState.mainVideo!.duration),
                   if (!appState.searchMode && appState.mainVideo != null) 
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: horPadding),
